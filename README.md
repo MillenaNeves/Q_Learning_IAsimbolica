@@ -87,7 +87,7 @@ Esse sistema incentiva o agente a encontrar caminhos eficientes até o destino f
 
 ---
 
-## 🚀 Como Executar
+## Como Executar
 
 ### 1. Inicie o jogo
 
@@ -110,7 +110,7 @@ Para testar a política aprendida: defina TRAIN_MODE = False
 
 ---
 
-## Algoritmo Utilizado
+## Algoritmo utilizado
 
 O agente utiliza o algoritmo **Q-Learning**, que atualiza iterativamente os valores da Q-Table utilizando a equação:
 
@@ -129,7 +129,7 @@ O treinamento busca estimar os melhores valores para cada par estado-ação, per
 
 ---
 
-## 👩‍💻 Equipe
+## Equipe
 
 * Anysabele de Paula Barbosa Santos
 * Maria Clara Pereira Gonçalves
@@ -137,7 +137,7 @@ O treinamento busca estimar os melhores valores para cada par estado-ação, per
 
 ---
 
-## 🎓 Disciplina
+## Disciplina
 
 Projeto acadêmico desenvolvido para a disciplina de Inteligência Artificial Simbólica, com foco em aprendizado por reforço utilizando o algoritmo Q-Learning.
  
