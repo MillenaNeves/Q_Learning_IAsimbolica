@@ -62,7 +62,7 @@ Cada estado é representado por um vetor binário de 7 bits:
 As recompensas são fornecidas pelo ambiente após cada ação executada.
 
 * Penalidades entre **-14 e -1** para estados intermediários;
-* Recompensa de **+100** ao atingir a plataforma objetivo.
+* Recompensa de **+300** ao atingir a plataforma objetivo.
 
 Esse sistema incentiva o agente a encontrar caminhos eficientes até o destino final.
 
