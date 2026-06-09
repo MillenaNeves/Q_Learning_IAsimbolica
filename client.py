@@ -29,6 +29,7 @@ SAVE_EVERY     = 100     # salvar Q-table a cada N episódios
 EP_TESTS       = 20      # episódios de avaliação da política aprendida
 
 SUCCESS_REWARD = 100     # recompensa do bloco-objetivo 
+FALL_REWARD    = -100    # recompensa de queda (conforme enunciado)
 FALL_THRESHOLD = 5       # queda detectada se plataforma recuar mais que isso
 
 # Arquivo de saída
@@ -90,7 +91,7 @@ class QLearningAgent:
         return np.zeros((NUM_STATES, NUM_ACTIONS), dtype=float)
 
     def save_q_table(self):
-        """Salva a Q-table no formato exigido pelo enunciado (sem cabeçalho)."""
+        # salva a Q-table no formato exigido
         np.savetxt(QTABLE_FILE, self.q_table, fmt="%.6f")
         print(f"[INFO] Q-table salva em: {QTABLE_FILE}")
 
@@ -98,9 +99,9 @@ class QLearningAgent:
     
     def choose_action(self, state: int) -> str:
         """
-        Escolhe uma ação com política ε-greedy.
-        - Com probabilidade ε: ação aleatória (exploração).
-        - Com probabilidade 1-ε: melhor ação conhecida (explotação).
+        Escolhe uma ação com política ε-greedy
+        - Com probabilidade ε: ação aleatória - exploração
+        - Com probabilidade 1-ε: melhor ação conhecida - explotação
         """
         if random.random() < self.epsilon:
             return random.choice(ACTIONS)
@@ -124,7 +125,7 @@ class QLearningAgent:
 
     def train(self, sock):
         """
-        Loop principal de treino Q-Learning.
+        Loop principal de treino Q-Learning
 
         Cada episódio:
           1. Lê o estado REAL do servidor (não sorteia índice aleatório)
@@ -134,7 +135,7 @@ class QLearningAgent:
           4. Detecta fim de episódio (vitória ou queda)
           5. Decai ε ao final do episódio
         """
-        print("\n=== INICIANDO TREINO ===")
+        print("\n INICIANDO TREINO ")
         successes = 0
 
         for ep in range(1, EPISODES + 1):
@@ -158,7 +159,7 @@ class QLearningAgent:
                 if reward >= SUCCESS_REWARD:
                     done = True
                     successes += 1
-                    print(f"  [Ep {ep:4d}] 🎉 OBJETIVO ALCANÇADO (passo {step+1})")
+                    print(f"  [Ep {ep:4d}] OBJETIVO ALCANÇADO (passo {step+1})")
 
                 # Queda: recuo grande de plataforma: aplica penalidade extra
                 elif plat_cur > 2 and plat_next < plat_cur - FALL_THRESHOLD:
@@ -201,7 +202,7 @@ class QLearningAgent:
         ocasionalmente. Quando isso ocorre e o agente entra em loop
         em estados ruins (plat=0/1 com Q-values parecidos), usamos
         uma pequena aleatoriedade LOCAL só p escapar, sem alterar
-        a Q-table (não é treino)
+        a Q-table 
 
         EPSILON_TEST = 0.25 significa: 75% greedy, 25% aleatório apenas
         quando estiver em loop (visitou o estado 3+ vezes)
