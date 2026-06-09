@@ -28,7 +28,7 @@ MAX_STEPS      = 500     # passos por episódio: mais passos dá mais tempo para
 SAVE_EVERY     = 100     # salvar Q-table a cada N episódios
 EP_TESTS       = 20      # episódios de avaliação da política aprendida
 
-SUCCESS_REWARD = 100     # recompensa do bloco-objetivo 
+SUCCESS_REWARD = 300     # recompensa do bloco-objetivo 
 FALL_REWARD    = -100    # recompensa de queda (conforme enunciado)
 FALL_THRESHOLD = 5       # queda detectada se plataforma recuar mais que isso
 
